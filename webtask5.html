@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Mini Blog</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f2f2f2;
+    }
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .post {
+      background: #f9f9f9;
+      margin: 20px 0;
+      padding: 15px;
+      border-left: 5px solid #4a90e2;
+    }
+    .post h3 {
+      margin: 0 0 10px 0;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>My Mini Blog</h1>
+    <p>Write and share your thoughts</p>
+  </header>
+
+  <div class="container">
+    <h2>Create a New Post</h2>
+    <input type="text" id="title" placeholder="Enter post title" />
+    <textarea id="content" placeholder="Enter post content" rows="4"></textarea>
+    <button onclick="addPost()">Publish</button>
+
+    <h2>Recent Posts</h2>
+    <div id="posts"></div>
+  </div>
+
+  <script>
+    function addPost() {
+      const title = document.getElementById('title').value.trim();
+      const content = document.getElementById('content').value.trim();
+
+      if (title === "" || content === "") {
+        alert("Please fill in both title and content.");
+        return;
+      }
+
+      const postDiv = document.createElement('div');
+      postDiv.className = 'post';
+
+      const postTitle = document.createElement('h3');
+      postTitle.textContent = title;
+
+      const postContent = document.createElement('p');
+      postContent.textContent = content;
+
+      postDiv.appendChild(postTitle);
+      postDiv.appendChild(postContent);
+
+      document.getElementById('posts').prepend(postDiv);
+
+      // Clear inputs
+      document.getElementById('title').value = "";
+      document.getElementById('content').value = "";
+    }
+  </script>
+
+</body>
+</html>
